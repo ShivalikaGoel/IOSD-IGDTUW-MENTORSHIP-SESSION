@@ -1,0 +1,20 @@
+#include <iostream>
+
+int main()
+{
+	int t,n,i,sum;
+	std::cin>>t;
+	while(t--)
+	{
+		std::cin>>n;
+		int a[n];
+		sum=0;
+		for(i=0;i<n;i++)
+		{
+			std::cin>>a[i];
+			sum+=a[i];
+		}
+		std::cout<<sum<<"\n";		
+	}
+	return 0;
+}
