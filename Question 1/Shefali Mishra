@@ -1,0 +1,23 @@
+#include <iostream>
+
+int main()
+{
+	int t,n,i;
+	std::cin>>t;
+	while(t--)
+	{
+		std::cin>>n;
+		int a[n];
+		for(i=0;i<n;i++)
+		std::cin>>a[i];
+		
+		int max=a[0],min=a[0];
+		for(i=0;i<n;i++)
+		{
+			max=a[i]>max?a[i]:max;
+			min=a[i]<min?a[i]:min;
+		}
+		
+		std::cout<<max<<" "<<min<<"\n";
+	}
+}
