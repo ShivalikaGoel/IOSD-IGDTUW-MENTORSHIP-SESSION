@@ -1,0 +1,66 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Anagrams {
+
+	public static void main(String[] args) {
+
+		Scanner scn = new Scanner(System.in);
+		int t = scn.nextInt();
+		while (t > 0) {
+			String str = scn.next();
+			String s = scn.next();
+			int n = str.length();
+			int count = 0;
+			for (int i = 0; i < n; i++) {
+				for (int j = i; j < n; j++) {
+					if (isanagram(str.substring(i, j + 1), s))
+						count++;
+				}
+			}
+			System.out.println(count);
+
+			t--;
+		}
+
+	}
+
+	public static boolean isanagram(String str, String s) {
+
+		int a = str.length();
+		int b = s.length();
+		if (a != b)
+			return false;
+
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		for (int i = 0; i < a; i++) {
+			if (map.containsKey(str.charAt(i))) {
+				int of=map.get(str.charAt(i));
+				map.put(str.charAt(i), of + 1);
+			} else {
+				map.put(str.charAt(i), 1);
+			}
+		}
+
+		for (int i = 0; i < b; i++) {
+			char ch = s.charAt(i);
+			if (map.containsKey(ch)) {
+				int of = map.get(ch);
+				if (of == 1)
+					map.remove(ch);
+				else
+					map.put(ch, of - 1);
+
+			} else {
+				return false;
+			}
+
+		}
+		if (!map.isEmpty())
+			return false;
+
+		return true;
+
+	}
+
+}
