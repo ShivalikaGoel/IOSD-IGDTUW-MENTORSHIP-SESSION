@@ -1,0 +1,60 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class FirstNegativeIntegerInWindowOfSizeK {
+
+	public static void main(String[] args) {
+
+		Scanner scn = new Scanner(System.in);
+
+		int t = scn.nextInt();
+		while (t-- > 0) {
+			int n = scn.nextInt();
+
+			int arr[] = new int[n];
+			for (int i = 0; i < n; i++) {
+				arr[i] = scn.nextInt();
+			}
+			int k = scn.nextInt();
+
+			Queue<Integer> q = new LinkedList<Integer>();
+
+			for (int i = 0; i < k; i++) {
+				if (arr[i] < 0) {
+					q.add(i);
+				}
+			}
+
+			// print
+			if (q.isEmpty())
+				System.out.print(0 + " ");
+			else
+				System.out.print(arr[q.peek()] + " ");
+
+			// loop
+			for (int i = 1; i <= arr.length - k; i++) {
+
+				// removing useless elements
+				if (!q.isEmpty() && q.peek() < i) {
+					q.remove();
+				}
+
+				// adding last element
+				if (arr[i + k - 1] < 0) {
+					q.add(i + k - 1);
+				}
+
+				// print
+				if (q.isEmpty())
+					System.out.print(0 + " ");
+				else
+					System.out.print(arr[q.peek()] + " ");
+
+			}
+			System.out.println();
+
+		}
+	}
+
+}
